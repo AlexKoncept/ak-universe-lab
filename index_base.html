@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Universe Lab - Wear the Experiment</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* (Le CSS reste inchangé, il est omis ici par souci de clarté mais est identique à la version précédente) */
+        :root{--color-background:#0a0a0a;--color-text:#e0e0e0;--color-accent:#00ffff;--color-border:rgba(255,255,255,0.1);--font-title:'Orbitron',sans-serif;--font-body:'Work Sans',sans-serif}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background-color:var(--color-background);color:var(--color-text);font-family:var(--font-body);overflow-x:hidden;cursor:none}.container{width:90%;max-width:1200px;margin:0 auto}h1,h2,h3{font-family:var(--font-title);font-weight:700;text-transform:uppercase;letter-spacing:2px}.glitch-effect{position:relative;display:inline-block}.glitch-effect::before,.glitch-effect::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-background);overflow:hidden;clip:rect(0,900px,0,0)}.glitch-effect::before{left:2px;text-shadow:-1px 0 var(--color-accent);animation:glitch-anim-1 2s infinite linear alternate-reverse}.glitch-effect::after{left:-2px;text-shadow:-1px 0 #ff00ff;animation:glitch-anim-2 2s infinite linear alternate-reverse}@keyframes glitch-anim-1{0%{clip:rect(42px,9999px,44px,0)}100%{clip:rect(2px,9999px,92px,0)}}@keyframes glitch-anim-2{0%{clip:rect(12px,9999px,60px,0)}100%{clip:rect(70px,9999px,86px,0)}}.header{position:fixed;top:0;left:0;width:100%;padding:20px 0;z-index:100;background:linear-gradient(to bottom,rgba(10,10,10,0.9),transparent);border-bottom:1px solid var(--color-border)}.header .container{display:flex;justify-content:space-between;align-items:center}.logo{font-family:var(--font-title);font-size:1.5em;text-decoration:none;color:var(--color-text);font-weight:900}.logo span{color:var(--color-accent)}.nav ul{list-style:none;display:flex;gap:30px}.nav a{color:var(--color-text);text-decoration:none;text-transform:uppercase;font-size:0.9em;letter-spacing:1px;transition:color 0.3s ease}.nav a:hover{color:var(--color-accent)}.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background-image:url('images/hero-background.png');background-size:cover;background-position:center}.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,10,10,0.7)}.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;background-image:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,0.25) 50%);background-size:100% 4px;opacity:0.3;pointer-events:none}.hero-content{position:relative;z-index:10}.hero h1{font-size:4em;margin-bottom:20px}.hero .slogan{font-size:1.5em;font-family:var(--font-body);font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--color-accent)}.section{padding:100px 0}.section-title{text-align:center;font-size:2.5em;margin-bottom:60px}.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}.product-card{background-color:#111;border:1px solid var(--color-border);overflow:hidden;position:relative;transition:transform 0.4s ease,box-shadow 0.4s ease,border-color 0.4s ease}.product-card:hover{transform:translateY(-10px);border-color:var(--color-accent);box-shadow:0 0 25px rgba(0,255,255,0.2)}.product-image{width:100%;height:400px;object-fit:cover;transition:opacity 0.4s ease}.product-card:hover .product-image{opacity:0.8}.product-info{padding:20px}.product-info h3{font-size:1.2em;color:var(--color-accent)}.product-info p{font-size:0.9em;color:#aaa;margin-top:10px}#le-lab{background-color:#111}.about-content{display:flex;align-items:center;gap:50px}.about-text{flex:1}.about-text h2{font-size:2.5em;margin-bottom:30px}.about-text p{line-height:1.8;margin-bottom:20px}.about-image{flex:1;max-width:500px;border:1px solid var(--color-border)}.about-image img{width:100%;display:block}.footer{padding:40px 0;border-top:1px solid var(--color-border);text-align:center;font-size:0.9em;color:#aaa}.footer p{margin-bottom:10px}.social-links a{color:#aaa;margin:0 10px;text-decoration:none;transition:color 0.3s ease}.social-links a:hover{color:var(--color-accent)}@media (max-width:768px){.nav{display:none}.hero h1{font-size:2.5em}.hero .slogan{font-size:1em}.about-content{flex-direction:column}}.custom-cursor{position:fixed;left:0;top:0;width:24px;height:24px;border:2px solid var(--color-accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s ease-out;transform:translate(-50%,-50%)}
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#collection">Collection_01</a></li>
+                    <li><a href="#le-lab">Le Lab</a></li>
+                    <li><a href="#">Lookbook</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="glitch-effect" data-text="AK UNIVERSE LAB">AK UNIVERSE LAB</h1>
+                <p class="slogan">Wear the Experiment</p>
+            </div>
+        </section>
+
+        <section id="collection" class="section">
+            <div class="container">
+                <h2 class="section-title">Expérience // 01 : Chrono-Wear</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/product1.png" alt="Quantum Hoodie" class="product-image">
+                        <div class="product-info">
+                            <h3>Quantum Hoodie</h3>
+                            <p>Structure en néoprène technique, inserts holographiques et coutures inspirées des circuits imprimés.</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/product2.png" alt="Gravity Cargo Pants" class="product-image">
+                        <div class="product-info">
+                            <h3>Gravity Cargo Pants</h3>
+                            <p>Tissu déperlant avec système de sangles magnétiques. La fusion parfaite du streetwear et de la tech.</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/product3.png" alt="Chrono-Gauntlet V1" class="product-image">
+                        <div class="product-info">
+                            <h3>Chrono-Gauntlet V1</h3>
+                            <p>Accessoire inspiré de l'horlogerie de précision, mêlant fibre de carbone et titane.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="le-lab" class="section">
+            <div class="container about-content">
+                <div class="about-text">
+                    <h2>Le Laboratoire</h2>
+                    <p>AK Universe Lab n'est pas une marque, c'est un protocole. Une expérimentation continue à la croisée des chemins entre l'horlogerie de précision, la culture tech et l'énergie brute du streetwear.</p>
+                    <p>Chaque pièce est conçue comme un prototype, une réponse fonctionnelle et esthétique à un futur que nous construisons. Nous ne suivons pas les tendances, nous les programmons. <strong>Wear the Experiment.</strong></p>
+                </div>
+                <div class="about-image">
+                    <img src="images/labo.png" alt="Image d'ambiance du lab">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AK UNIVERSE LAB. ALL RIGHTS RESERVED. PROTOCOL 01.</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Behance</a>
+                <a href="#">X (Twitter)</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT POUR LES MICRO-INTERACTIONS ---
+
+        // Effet de parallaxe subtil et FLUIDE sur l'image du 'hero'
+        const hero = document.querySelector('.hero');
+        window.addEventListener('scroll', () => {
+            const scrollValue = window.scrollY;
+            // LA CORRECTION EST ICI : on utilise calc() pour un mouvement fluide
+            hero.style.backgroundPosition = `center calc(50% + ${scrollValue * 0.5}px)`;
+        });
+
+        // Effet d'apparition des éléments au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        const animatedElements = document.querySelectorAll('.product-card, .about-content > div');
+        animatedElements.forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // GESTION DU CURSEUR PERSONNALISÉ
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>
