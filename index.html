@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>AK Universe Lab - Wear the Experiment</title>
     
+    <meta name="description" content="AK Universe Lab : un projet de mode expérimental fusionnant précision horlogère, culture tech et vibes streetwear. Découvrez nos prototypes et notre philosophie : Wear the Experiment.">
+    <meta name="keywords" content="AK Universe Lab, mode, futuriste, techwear, expérimental, streetwear, conceptuel, design">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AK Universe Lab - Wear the Experiment">
+    <meta property="og:description" content="Découvrez un univers où le vêtement devient un prototype. Une fusion de précision, de tech et de streetwear.">
+    <meta property="og:image" content="images/og-image.webp">
+    
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -27,6 +39,7 @@
             overflow-x: hidden;
             cursor: none;
         }
+        body.nav-open { overflow: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         h1, h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         .glitch-effect { position: relative; display: inline-block; }
@@ -38,8 +51,9 @@
         
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0; z-index: 100; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent); border-bottom: 1px solid var(--color-border); }
         .header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 1.5em; text-decoration: none; color: var(--color-text); font-weight: 900; }
+        .logo { font-family: var(--font-title); font-size: 1.5em; text-decoration: none; color: var(--color-text); font-weight: 900; z-index: 101; }
         .logo span { color: var(--color-accent); }
+        .nav { display: block; }
         .nav ul { list-style: none; display: flex; gap: 30px; }
         .nav a { color: var(--color-text); text-decoration: none; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s ease; }
         .nav a:hover { color: var(--color-accent); }
@@ -77,8 +91,7 @@
         .social-links a { color: #aaa; margin: 0 15px; text-decoration: none; transition: color 0.3s ease; }
         .social-links a:hover { color: var(--color-accent); }
         
-        .custom-cursor { position: fixed; left: 0; top: 0; width: 24px; height: 24px; border: 2px solid var(--color-accent); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease-out; transform: translate(-50%, -50%); }
-
+        .custom-cursor { position: fixed; left: 0; top: 0; width: 24px; height: 24px; border: 2px solid var(--color-accent); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease-out; transform: translate(-50%, -50%); display: block; }
         .category-title { font-size: 1.5em; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 15px; margin-top: 80px; margin-bottom: 40px; }
         .category-title:first-of-type { margin-top: 0; }
         
@@ -104,8 +117,31 @@
         .overlay-data-top, .overlay-data-bottom { font-family: 'Courier New', Courier, monospace; font-size: 0.8em; letter-spacing: 1px; color: var(--color-accent); text-shadow: 0 0 5px var(--color-accent); }
         .overlay-data-bottom { align-self: flex-end; }
         .simulation-caption { background-color: #111; padding: 15px; text-align: center; font-size: 0.9em; color: #aaa; border-top: 1px solid var(--color-border); }
-
-        @media (max-width: 768px) { .nav { display: none; } .hero h1 { font-size: 2.5em; } .hero .slogan { font-size: 1em; } .about-content { flex-direction: column; } .simulation-grid { grid-template-columns: 1fr; } }
+        
+        .burger-menu { display: none; }
+        
+        @media (max-width: 768px) {
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
+            .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
+            .nav.nav-open { transform: translateX(0); }
+            .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
+            .nav a { font-size: 1.2em; }
+            
+            .burger-menu { display: block; position: relative; z-index: 101; width: 30px; height: 22px; cursor: pointer; }
+            .burger-menu span { display: block; position: absolute; height: 2px; width: 100%; background: var(--color-text); border-radius: 2px; opacity: 1; left: 0; transform: rotate(0deg); transition: .25s ease-in-out; }
+            .burger-menu span:nth-child(1) { top: 0px; }
+            .burger-menu span:nth-child(2), .burger-menu span:nth-child(3) { top: 10px; }
+            .burger-menu span:nth-child(4) { top: 20px; }
+            .burger-menu.open span:nth-child(1), .burger-menu.open span:nth-child(4) { top: 10px; width: 0%; left: 50%; }
+            .burger-menu.open span:nth-child(2) { transform: rotate(45deg); }
+            .burger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
+            
+            .hero h1 { font-size: 2.5em; }
+            .hero .slogan { font-size: 1em; }
+            .about-content { flex-direction: column; }
+            .simulation-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -124,7 +160,7 @@
     <header class="header">
         <div class="container">
             <a href="#" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
-            <nav class="nav">
+            <nav id="main-nav" class="nav">
                 <ul>
                     <li><a href="#">Lookbook</a></li>
                     <li><a href="#collection">Collection_01</a></li>
@@ -132,6 +168,9 @@
                     <li><a href="#footer">Contact</a></li>
                 </ul>
             </nav>
+            <div id="burger-btn" class="burger-menu">
+                <span></span><span></span><span></span><span></span>
+            </div>
         </div>
     </header>
 
@@ -348,6 +387,14 @@
             if (e.target === modal) {
                 closeModal();
             }
+        });
+
+        const burgerBtn = document.getElementById('burger-btn');
+        const mainNav = document.getElementById('main-nav');
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mainNav.classList.toggle('nav-open');
+            document.body.classList.toggle('nav-open');
         });
     </script>
 </body>
