@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>AK Universe Lab - Wear the Experiment</title>
+    <title>AK Universe Lab - Collection // 02 : Spectra-Shift</title>
     
-    <meta name="description" content="AK Universe Lab : un projet de mode expérimental fusionnant précision horlogère, culture tech et vibes streetwear. Découvrez nos prototypes et notre philosophie : Wear the Experiment.">
-    <meta name="keywords" content="AK Universe Lab, mode, futuriste, techwear, expérimental, streetwear, conceptuel, design">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AK Universe Lab - Wear the Experiment">
-    <meta property="og:description" content="Découvrez un univers où le vêtement devient un prototype. Une fusion de précision, de tech et de streetwear.">
-    <meta property="og:image" content="images/og-image.webp">
+    <meta name="description" content="Découvrez l'Expérience // 02 : Spectra-Shift, une collection explorant l'interaction de la lumière, de la couleur et de la matière dans l'environnement urbain.">
     
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon">
@@ -40,14 +34,9 @@
             cursor: none;
         }
         body.nav-open { overflow: hidden; }
+        main { padding-top: 100px; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        h1, h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        .glitch-effect { position: relative; display: inline-block; }
-        .glitch-effect::before, .glitch-effect::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-background); overflow: hidden; clip: rect(0, 900px, 0, 0); }
-        .glitch-effect::before { left: 2px; text-shadow: -1px 0 var(--color-accent); animation: glitch-anim-1 2s infinite linear alternate-reverse; }
-        .glitch-effect::after { left: -2px; text-shadow: -1px 0 #ff00ff; animation: glitch-anim-2 2s infinite linear alternate-reverse; }
-        @keyframes glitch-anim-1 { 0% { clip: rect(42px, 9999px, 44px, 0); } 100% { clip: rect(2px, 9999px, 92px, 0); } }
-        @keyframes glitch-anim-2 { 0% { clip: rect(12px, 9999px, 60px, 0); } 100% { clip: rect(70px, 9999px, 86px, 0); } }
+        h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0; z-index: 100; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent); border-bottom: 1px solid var(--color-border); }
         .header .container { display: flex; justify-content: space-between; align-items: center; }
@@ -57,13 +46,6 @@
         .nav ul { list-style: none; display: flex; gap: 30px; }
         .nav a { color: var(--color-text); text-decoration: none; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s ease; }
         .nav a:hover { color: var(--color-accent); }
-        
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background-image: url('images/hero-background.webp'); background-size: cover; background-position: center; }
-        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.7); }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 50%); background-size: 100% 4px; opacity: 0.3; pointer-events: none; }
-        .hero-content { position: relative; z-index: 10; }
-        .hero h1 { font-size: 4em; margin-bottom: 20px; }
-        .hero .slogan { font-size: 1.5em; font-family: var(--font-body); font-weight: 300; letter-spacing: 5px; text-transform: uppercase; color: var(--color-accent); }
         
         .section { padding: 100px 0; }
         .section-title { text-align: center; font-size: 2.5em; margin-bottom: 60px; }
@@ -75,14 +57,6 @@
         .product-info { padding: 20px; position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .product-info h3 { font-size: 1.2em; color: var(--color-accent); }
         .product-info p { font-size: 0.9em; color: #aaa; margin-top: 10px; margin-bottom: 20px; }
-        
-        #le-lab { background-color: #111; }
-        .about-content { display: flex; align-items: center; gap: 50px; }
-        .about-text { flex: 1; }
-        .about-text h2 { font-size: 2.5em; margin-bottom: 30px; }
-        .about-text p { line-height: 1.8; margin-bottom: 20px; }
-        .about-image { flex: 1; max-width: 500px; border: 1px solid var(--color-border); }
-        .about-image img { width: 100%; display: block; }
         
         .footer { padding: 60px 0; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.9em; color: #aaa; }
         .footer-contact-link { display: inline-block; color: #aaa; text-decoration: none; margin-bottom: 25px; transition: color 0.3s ease; }
@@ -108,15 +82,6 @@
         .modal-close-btn { position: absolute; top: 15px; right: 15px; color: #aaa; font-size: 1.5em; text-decoration: none; }
         
         .section-subtitle { text-align: center; max-width: 600px; margin: -40px auto 60px auto; color: #aaa; line-height: 1.7; }
-        .simulation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-        .simulation-item { position: relative; overflow: hidden; border: 1px solid var(--color-border); }
-        .simulation-image { width: 100%; display: block; transition: transform 0.5s ease; }
-        .simulation-item:hover .simulation-image { transform: scale(1.05); }
-        .simulation-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), transparent); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; pointer-events: none; }
-        .simulation-item:hover .simulation-overlay { opacity: 1; }
-        .overlay-data-top, .overlay-data-bottom { font-family: 'Courier New', Courier, monospace; font-size: 0.8em; letter-spacing: 1px; color: var(--color-accent); text-shadow: 0 0 5px var(--color-accent); }
-        .overlay-data-bottom { align-self: flex-end; }
-        .simulation-caption { background-color: #111; padding: 15px; text-align: center; font-size: 0.9em; color: #aaa; border-top: 1px solid var(--color-border); }
         
         .burger-menu { display: none; }
 
@@ -128,6 +93,7 @@
         @media (max-width: 768px) {
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            main { padding-top: 80px; }
             .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
             .nav.nav-open { transform: translateX(0); }
             .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
@@ -141,12 +107,11 @@
             .burger-menu.open span:nth-child(1), .burger-menu.open span:nth-child(4) { top: 10px; width: 0%; left: 50%; }
             .burger-menu.open span:nth-child(2) { transform: rotate(45deg); }
             .burger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
-            
-            .hero h1 { font-size: 2.5em; }
-            .hero .slogan { font-size: 1em; }
-            .about-content { flex-direction: column; }
-            .simulation-grid { grid-template-columns: 1fr; }
-            .section-subtitle {font-size: 14px;line-height: 1.6;margin-bottom: 50px; }
+
+            .nav .dropdown:hover .dropdown-menu { display: none; }
+            .nav .dropdown-menu { position: static; display: flex; flex-direction: column; background-color: transparent; border: none; width: 100%; padding: 0; margin-top: -20px; margin-bottom: 20px; }
+            .nav .dropdown-menu li a { font-size: 0.8em; text-align: center; }
+            .nav .dropdown > a { display: none; }
         }
     </style>
 </head>
@@ -165,23 +130,22 @@
 
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
+            <a href="index.html" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
             <nav id="main-nav" class="nav">
-                <ul>
+<ul>
     <li class="dropdown">
         <a href="#">Expériences ▼</a>
         <ul class="dropdown-menu">
-            <li><a href="#collection">Expérience // 01 : Chrono-Wear</a></li>
+            <li><a href="index.html">Expérience // 01 : Chrono-Wear</a></li>
             <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
             <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
             <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
-            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>
-           
+            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>                
         </ul>
     </li>
-    <li><a href="#le-lab">Le Lab</a></li>
-    <li><a href="#integration-protocol">Lookbook</a></li>
-    <li><a href="#footer">Contact</a></li>
+    <li><a href="index.html#le-lab">Le Lab</a></li>
+    <li><a href="index.html#integration-protocol">Lookbook</a></li>
+    <li><a href="index.html#footer">Contact</a></li>
 </ul>
             </nav>
             <div id="burger-btn" class="burger-menu">
@@ -191,58 +155,52 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="glitch-effect" data-text="AK UNIVERSE LAB">AK UNIVERSE LAB</h1>
-                <p class="slogan">Wear the Experiment</p>
-            </div>
-        </section>
-
         <section id="collection" class="section">
             <div class="container">
-                <h2 class="section-title">Expérience // 01 : Chrono-Wear</h2>
-<p class="section-subtitle">Le protocole fondateur. Une exploration de la structure et du temps, où chaque pièce est conçue comme un outil fonctionnel pour l'environnement urbain.</p>
+                <h2 class="section-title">Expérience // 02 : Spectra-Shift</h2>
+                <p class="section-subtitle">Une exploration de l'interaction entre lumière, couleur et matière. La couleur devient fonctionnelle, réactive et changeante.</p>
+
                 <h3 class="category-title">01 // Systèmes Portables</h3>
                 <div class="product-grid">
                     <div class="product-card">
-                        <img src="images/product1.webp" alt="Quantum Hoodie" class="product-image">
+                        <img src="images/spectra-shift/blouson-echo.webp" alt="Blouson Echo à Réflectivité Prismatique" class="product-image">
                         <div class="product-info">
-                            <div><h3>Quantum Hoodie</h3><p>Structure en néoprène technique, inserts holographiques et coutures inspirées des circuits imprimés.</p></div>
+                            <div><h3>Blouson "Echo"</h3><p>Tissu technique qui révèle un motif iridescent prismatique sous une lumière directe. Visibilité et style réactif.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="images/product2.webp" alt="Gravity Cargo Pants" class="product-image">
+                        <img src="images/spectra-shift/pantalon-flux.webp" alt="Pantalon Flux Thermochromique" class="product-image">
                         <div class="product-info">
-                            <div><h3>Gravity Cargo Pants</h3><p>Tissu déperlant avec système de sangles magnétiques. La fusion parfaite du streetwear et de la tech.</p></div>
+                            <div><h3>Pantalon "Flux"</h3><p>Panneaux thermochromiques qui réagissent à la chaleur du corps, passant du noir à un violet néon intense.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="images/vsj-01.webp" alt="Vector-Shell Jacket" class="product-image">
+                        <img src="images/spectra-shift/tshirt-pulse.webp" alt="T-shirt Pulse à Motif Électroluminescent" class="product-image">
                         <div class="product-info">
-                            <div><h3>Vector-Shell Jacket (VSJ-01)</h3><p>Hardshell minimaliste en tissu technique 3 couches. Coutures thermo-soudées et géométriques.</p></div>
+                            <div><h3>T-shirt "Pulse"</h3><p>Logo minimaliste avec une fine couche électroluminescente, émettant une pulsation douce de lumière bleue.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="images/skp-02.webp" alt="Static-Knit Pullover" class="product-image">
+                        <img src="images/spectra-shift/parka-cascade.webp" alt="Parka Cascade à Motif Hydrochromique" class="product-image">
                         <div class="product-info">
-                            <div><h3>Static-Knit Pullover (SKP-02)</h3><p>Tricot technique thermo-régulant avec panneaux texturés aux épaules. Coupe ajustée.</p></div>
+                            <div><h3>Parka "Cascade"</h3><p>Parka légère hydrochromique. Un motif de circuits apparaît au contact de la pluie, fusionnant fonction et esthétique.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="images/atp-03.webp" alt="Axis Tech-Pants" class="product-image">
+                        <img src="images/spectra-shift/gilet-synapse.webp" alt="Gilet Synapse à Fibre Optique Tissée" class="product-image">
                         <div class="product-info">
-                            <div><h3>Axis Tech-Pants (ATP-03)</h3><p>Pantalon fuselé en tissu stretch résistant à l'abrasion, conçu pour une liberté de mouvement totale.</p></div>
+                            <div><h3>Gilet "Synapse"</h3><p>Gilet tactique minimaliste avec fibres optiques tissées. Les coutures s'illuminent pour créer des superpositions lumineuses.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img src="images/ibl-04.webp" alt="Interface Base-Layer" class="product-image">
+                        <img src="images/spectra-shift/chemise-polaris.webp" alt="Sur-chemise Polaris en Nylon Dichroïque" class="product-image">
                         <div class="product-info">
-                            <div><h3>Interface Base-Layer (IBL-04)</h3><p>Couche de base ultra-légère avec des lignes de couture plates de couleur cyan, évoquant des flux de données.</p></div>
+                            <div><h3>Sur-chemise "Polaris"</h3><p>Tissu en nylon dichroïque qui change de couleur, passant du bleu nuit au cuivre métallique selon l'angle de la lumière.</p></div>
                             <a href="#" class="cta-button virtual-try-on-btn">Lancer l'Essayage Virtuel</a>
                         </div>
                     </div>
@@ -251,94 +209,56 @@
                 <h3 class="category-title">02 // Modules Périphériques</h3>
                 <div class="product-grid">
                     <div class="product-card">
-                        <img src="images/product3.webp" alt="Chrono-Gauntlet V1" class="product-image">
-                        <div class="product-info"><div><h3>Chrono-Gauntlet V1</h3><p>Accessoire inspiré de l'horlogerie de précision, mêlant fibre de carbone et titane.</p></div></div>
+                        <img src="images/spectra-shift/sac-refract.webp" alt="Sac Refract en TPU Teinté" class="product-image">
+                        <div class="product-info"><div><h3>Sac "Refract"</h3><p>Sac en TPU semi-transparent orange signal, jouant avec les couches et la lumière. Boucles à finition holographique.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/nsp-01.webp" alt="Node Sling-Pack" class="product-image">
-                        <div class="product-info"><div><h3>Node Sling-Pack (NSP-01)</h3><p>Sac en bandoulière compact et angulaire en nylon balistique avec boucle magnétique Fidlock®.</p></div></div>
+                        <img src="images/spectra-shift/casquette-beacon.webp" alt="Casquette Beacon avec Liseré OLED" class="product-image">
+                        <div class="product-info"><div><h3>Casquette "Beacon"</h3><p>Liseré OLED flexible intégré à la visière, projetant une ligne de lumière personnalisable pour un style unique.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/ktg-02.webp" alt="Kinetic Touch-Gloves" class="product-image">
-                        <div class="product-info"><div><h3>Kinetic Touch-Gloves (KTG-02)</h3><p>Gants ajustés en softshell avec bouts de doigts conducteurs et grip en silicone géométrique.</p></div></div>
+                        <img src="images/spectra-shift/ceinture-axis.webp" alt="Ceinture Axis à Boucle Prismatique" class="product-image">
+                        <div class="product-info"><div><h3>Ceinture "Axis"</h3><p>Boucle en acrylique usiné qui capture et réfracte la lumière ambiante, créant des éclats de couleur prismatiques.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/cub-03.webp" alt="Caliber Utility Belt" class="product-image">
-                        <div class="product-info"><div><h3>Caliber Utility Belt (CUB-03)</h3><p>Ceinture en sangle robuste avec une boucle "Cobra" en aluminium anodisé noir mat.</p></div></div>
+                        <img src="images/spectra-shift/baskets-chroma.webp" alt="Baskets Chroma-Strider à Accents Photochromiques" class="product-image">
+                        <div class="product-info"><div><h3>Baskets "Chroma-Strider"</h3><p>Accents photochromiques qui passent du blanc à l'orange vif sous les UV. Semelle holographique.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/sbb-04.webp" alt="Signal-Block Beanie" class="product-image">
-                        <div class="product-info"><div><h3>Signal-Block Beanie (SBB-04)</h3><p>Bonnet en laine mérinos doublé d'un tissu spécial bloquant les signaux RFID pour la protection des données.</p></div></div>
+                        <img src="images/spectra-shift/sac-solaris.webp" alt="Sac à Dos Solaris avec Panneaux Solaires" class="product-image">
+                        <div class="product-info"><div><h3>Sac à Dos "Solaris"</h3><p>Panneaux solaires flexibles et iridescents intégrés au design pour alimenter vos appareils et une LED de sécurité.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/akf-05.webp" alt="Axial Key-Frame" class="product-image">
-                        <div class="product-info"><div><h3>Axial Key-Frame (AKF-05)</h3><p>Organisateur de clés silencieux et compact en titane sablé, inspiré de l'ingénierie de précision.</p></div></div>
+                        <img src="images/spectra-shift/manchette-phase.webp" alt="Manchette Phase en Acrylique Irisé" class="product-image">
+                        <div class="product-info"><div><h3>Manchette "Phase"</h3><p>Bracelet en acrylique irisé qui agit comme un prisme portable, décomposant la lumière en un spectre de couleurs.</p></div></div>
                     </div>
                 </div>
 
                 <h3 class="category-title">03 // Artefacts Utilitaires</h3>
                 <div class="product-grid">
                     <div class="product-card">
-                        <img src="images/ihf-01.webp" alt="Isotope Hydration Flask" class="product-image">
-                        <div class="product-info"><div><h3>Isotope Hydration Flask (IHF-01)</h3><p>Gourde en titane à double paroi avec revêtement en poudre noir mat et bouchon en acier brossé.</p></div></div>
+                        <img src="images/spectra-shift/base-aura.webp" alt="Base de Chargement Aura à Induction Luminescente" class="product-image">
+                        <div class="product-info"><div><h3>Base "Aura"</h3><p>S'illumine d'un halo de lumière dont la couleur indique le niveau de batterie de l'appareil en charge.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/pds-02.webp" alt="Protocol Data-Slate" class="product-image">
-                        <div class="product-info"><div><h3>Protocol Data-Slate (PDS-02)</h3><p>Housse rigide pour tablette ou carnet en polymère texturé avec fermeture magnétique invisible.</p></div></div>
+                        <img src="images/spectra-shift/cable-torrent.webp" alt="Câble Torrent à Flux Énergétique Visible" class="product-image">
+                        <div class="product-info"><div><h3>Câble "Torrent"</h3><p>Fibres électroluminescentes tissées qui créent un effet visuel de lumière "coulant" vers l'appareil en charge.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/mtp-03.webp" alt="Mechanism Tool-Pen" class="product-image">
-                        <div class="product-info"><div><h3>Mechanism Tool-Pen (MTP-03)</h3><p>Stylo en aluminium usiné hexagonal dissimulant un jeu d'embouts de tournevis de précision.</p></div></div>
+                        <img src="images/spectra-shift/outil-spectrum.webp" alt="Multi-outil Spectrum en Titane Anodisé" class="product-image">
+                        <div class="product-info"><div><h3>Outil "Spectrum"</h3><p>Titane léger avec une finition anodisée iridescente. Chaque pièce possède un spectre de couleurs unique.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/sct-04.webp" alt="Specimen Containment Tray" class="product-image">
-                        <div class="product-info"><div><h3>Specimen Containment Tray (SCT-04)</h3><p>Vide-poche hexagonal en béton architectonique gris pour accueillir vos "spécimens" quotidiens.</p></div></div>
+                        <img src="images/spectra-shift/enceinte-resonance.webp" alt="Enceinte Bluetooth Resonance Spectrogramme" class="product-image">
+                        <div class="product-info"><div><h3>Enceinte "Resonance"</h3><p>Anneau de LED qui visualise les fréquences de la musique en temps réel, créant un spectrogramme lumineux.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/ips-05.webp" alt="Induction Power-Slab" class="product-image">
-                        <div class="product-info"><div><h3>Induction Power-Slab (IPS-05)</h3><p>Base de chargement sans fil en aluminium massif anodisé noir, avec connexion magnétique.</p></div></div>
+                        <img src="images/spectra-shift/gourde-vortex.webp" alt="Gourde Vortex en Verre Dichroïque" class="product-image">
+                        <div class="product-info"><div><h3>Gourde "Vortex"</h3><p>Verre dichroïque qui change de couleur selon la lumière et le liquide, passant du magenta au cyan électrique.</p></div></div>
                     </div>
                     <div class="product-card">
-                        <img src="images/gpl-06.webp" alt="Grid Protocol Logbook" class="product-image">
-                        <div class="product-info"><div><h3>Grid Protocol Logbook (GPL-06)</h3><p>Carnet de notes A5 avec couverture rigide technique et pages imprimées d'une grille de points cyan.</p></div></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="le-lab" class="section">
-            <div class="container about-content">
-                <div class="about-text">
-                    <h2>Le Laboratoire</h2>
-                    <p>AK Universe Lab n'est pas une marque, c'est un protocole. Une expérimentation continue à la croisée des chemins entre l'horlogerie de précision, la culture tech et l'énergie brute du streetwear.</p>
-                    <p>Chaque pièce est conçue comme un prototype, une réponse fonctionnelle et esthétique à un futur que nous construisons. Nous ne suivons pas les tendances, nous les programmons. <strong>Wear the Experiment.</strong></p>
-                </div>
-                <div class="about-image">
-                    <img src="images/labo.webp" alt="Image d'ambiance du lab">
-                </div>
-            </div>
-        </section>
-
-        <section id="integration-protocol" class="section">
-            <div class="container">
-                <h2 class="section-title">Protocole d'Intégration // Auteur</h2>
-                <p class="section-subtitle">Chaque prototype est soumis à des tests en conditions réelles pour valider sa fonctionnalité, son ergonomie et son intégration à l'environnement urbain. Voici les données brutes de nos dernières simulations sur le terrain.</p>
-                <div class="simulation-grid">
-                    <div class="simulation-item">
-                        <img src="images/auteur-01.webp" alt="Auteur testant le Quantum Hoodie" class="simulation-image">
-                        <div class="simulation-overlay">
-                            <span class="overlay-data-top">//_SPECIMEN: QUANTUM_HOODIE_//</span>
-                            <span class="overlay-data-bottom">//_STATUS: LIVE_FIELD_TEST_//</span>
-                        </div>
-                        <div class="simulation-caption">Test d'ergonomie et de protection en milieu urbain.</div>
-                    </div>
-                    <div class="simulation-item">
-                        <img src="images/auteur-02.webp" alt="Auteur testant le Vector-Shell Jacket" class="simulation-image">
-                        <div class="simulation-overlay">
-                            <span class="overlay-data-top">//_SPECIMEN: VECTOR-SHELL_//</span>
-                            <span class="overlay-data-bottom">//_ANALYSIS: WEATHER_RESISTANCE_//</span>
-                        </div>
-                        <div class="simulation-caption">Analyse de la résistance aux intempéries et de la liberté de mouvement.</div>
+                        <img src="images/spectra-shift/mousqueton-anchor.webp" alt="Mousqueton Anchor en Titane Anodisé" class="product-image">
+                        <div class="product-info"><div><h3>Mousqueton "Anchor"</h3><p>Titane léger avec une finition anodisée "arc-en-ciel". Chaque pièce est unique, un accessoire utilitaire et artistique.</p></div></div>
                     </div>
                 </div>
             </div>
@@ -354,16 +274,11 @@
                 <a href="https://www.youtube.com/@alexkonceptuniverse" target="_blank">YouTube</a>
                 <a href="#">X (Twitter)</a>
             </div>
-            <p>&copy; 2025 AK UNIVERSE LAB. ALL RIGHTS RESERVED. PROTOCOL 01.</p>
+            <p>&copy; 2025 AK UNIVERSE LAB. ALL RIGHTS RESERVED. PROTOCOL 02.</p>
         </div>
     </footer>
 
     <script>
-        const hero = document.querySelector('.hero');
-        window.addEventListener('scroll', () => {
-            const scrollValue = window.scrollY;
-            hero.style.backgroundPosition = `center calc(50% + ${scrollValue * 0.5}px)`;
-        });
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -372,7 +287,7 @@
                 }
             });
         });
-        const animatedElements = document.querySelectorAll('.product-card, .about-content > div, .simulation-item');
+        const animatedElements = document.querySelectorAll('.product-card');
         animatedElements.forEach((el) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';

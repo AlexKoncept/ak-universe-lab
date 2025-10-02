@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AK Universe Lab - Collection // 05 : Xeno-Morph</title>
+    
+    <meta name="description" content="Découvrez l'Expérience // 05 : Xeno-Morph. Le vêtement n'est plus un objet fabriqué, mais un organisme symbiotique bio-ingénieré.">
+    
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-background: #0a0a0a;
+            --color-text: #e0e0e0;
+            --color-accent: #00ffff;
+            --color-border: rgba(255, 255, 255, 0.1);
+            --font-title: 'Orbitron', sans-serif;
+            --font-body: 'Work Sans', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            cursor: none;
+        }
+        body.nav-open { overflow: hidden; }
+        main { padding-top: 100px; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0; z-index: 100; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent); border-bottom: 1px solid var(--color-border); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-title); font-size: 1.5em; text-decoration: none; color: var(--color-text); font-weight: 900; z-index: 101; }
+        .logo span { color: var(--color-accent); }
+        .nav { display: block; }
+        .nav ul { list-style: none; display: flex; gap: 30px; }
+        .nav a { color: var(--color-text); text-decoration: none; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s ease; }
+        .nav a:hover { color: var(--color-accent); }
+        
+        .section { padding: 100px 0; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 60px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .product-card { background-color: #111; border: 1px solid var(--color-border); overflow: hidden; position: relative; transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--color-accent); box-shadow: 0 0 25px rgba(0, 255, 255, 0.2); }
+        .product-image { width: 100%; height: 400px; object-fit: cover; transition: opacity 0.4s ease; }
+        .product-card:hover .product-image { opacity: 0.8; }
+        .product-info { padding: 20px; position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-info h3 { font-size: 1.2em; color: var(--color-accent); }
+        .product-info p { font-size: 0.9em; color: #aaa; margin-top: 10px; margin-bottom: 20px; }
+        
+        .footer { padding: 60px 0; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.9em; color: #aaa; }
+        .footer-contact-link { display: inline-block; color: #aaa; text-decoration: none; margin-bottom: 25px; transition: color 0.3s ease; }
+        .footer-contact-link:hover { color: var(--color-accent); }
+        .social-links { margin-bottom: 25px; }
+        .social-links a { color: #aaa; margin: 0 15px; text-decoration: none; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--color-accent); }
+        
+        .custom-cursor { position: fixed; left: 0; top: 0; width: 24px; height: 24px; border: 2px solid var(--color-accent); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease-out; transform: translate(-50%, -50%); display: block; }
+        .category-title { font-size: 1.5em; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 15px; margin-top: 80px; margin-bottom: 40px; }
+        .category-title:first-of-type { margin-top: 0; }
+        
+        .cta-button { display: inline-block; width: 100%; text-align: center; background-color: transparent; border: 1px solid var(--color-accent); color: var(--color-accent); padding: 12px; text-decoration: none; text-transform: uppercase; font-family: var(--font-title); letter-spacing: 2px; font-size: 0.8em; margin-top: auto; transition: background-color 0.3s, color 0.3s; }
+        .cta-button:hover { background-color: var(--color-accent); color: var(--color-background); }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.9); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-container { background-color: #111; padding: 40px; border: 1px solid var(--color-border); width: 90%; max-width: 500px; text-align: center; transform: scale(0.9); transition: transform 0.4s ease; }
+        .modal-overlay.active .modal-container { transform: scale(1); }
+        .modal-container h2 { color: var(--color-accent); margin-bottom: 20px; }
+        .modal-container p { color: #aaa; line-height: 1.6; margin-bottom: 30px; }
+        .modal-container .cta-button { width: auto; padding: 12px 30px; }
+        .modal-close-btn { position: absolute; top: 15px; right: 15px; color: #aaa; font-size: 1.5em; text-decoration: none; }
+        
+        .section-subtitle { text-align: center; max-width: 600px; margin: -40px auto 60px auto; color: #aaa; line-height: 1.7; }
+        
+        .burger-menu { display: none; }
+
+        .nav .dropdown { position: relative; }
+        .nav .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: rgba(10, 10, 10, 0.95); border: 1px solid var(--color-border); list-style: none; padding: 10px 0; width: 300px; backdrop-filter: blur(10px); }
+        .nav .dropdown:hover .dropdown-menu { display: block; }
+        .nav .dropdown-menu li a { display: block; padding: 10px 20px; white-space: nowrap; }
+        
+        @media (max-width: 768px) {
+            .custom-cursor { display: none; }
+            body { cursor: auto; }
+            main { padding-top: 80px; }
+            .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
+            .nav.nav-open { transform: translateX(0); }
+            .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
+            .nav a { font-size: 1.2em; }
+            
+            .burger-menu { display: block; position: relative; z-index: 101; width: 30px; height: 22px; cursor: pointer; }
+            .burger-menu span { display: block; position: absolute; height: 2px; width: 100%; background: var(--color-text); border-radius: 2px; opacity: 1; left: 0; transform: rotate(0deg); transition: .25s ease-in-out; }
+            .burger-menu span:nth-child(1) { top: 0px; }
+            .burger-menu span:nth-child(2), .burger-menu span:nth-child(3) { top: 10px; }
+            .burger-menu span:nth-child(4) { top: 20px; }
+            .burger-menu.open span:nth-child(1), .burger-menu.open span:nth-child(4) { top: 10px; width: 0%; left: 50%; }
+            .burger-menu.open span:nth-child(2) { transform: rotate(45deg); }
+            .burger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
+
+            .nav .dropdown:hover .dropdown-menu { display: none; }
+            .nav .dropdown-menu { position: static; display: flex; flex-direction: column; background-color: transparent; border: none; width: 100%; padding: 0; margin-top: -20px; margin-bottom: 20px; }
+            .nav .dropdown-menu li a { font-size: 0.8em; text-align: center; }
+            .nav .dropdown > a { display: none; }
+        }
+#alien-transmission-overlay {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--color-accent);
+            padding: 15px;
+            z-index: 9998;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--color-accent);
+            text-shadow: 0 0 5px var(--color-accent);
+            display: none; /* Apparaîtra avec le JS */
+        }
+        #alien-transmission-overlay h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+        #transmission-text {
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        #transmission-text::after {
+            content: '■';
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        #page-glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 3px;
+            opacity: 0;
+            animation: scanlines 10s linear infinite;
+        }
+        
+        .product-image.alien-glitch {
+            animation: image-glitch 0.5s linear;
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
+
+        @keyframes image-glitch {
+            0% { clip-path: inset(10% 0 80% 0); transform: translateX(-5px); }
+            10% { clip-path: inset(90% 0 5% 0); transform: translateX(5px); }
+            20% { clip-path: inset(40% 0 40% 0); transform: translateY(-5px); }
+            30% { clip-path: inset(15% 0 75% 0); transform: translateY(5px); }
+            40% { clip-path: inset(85% 0 10% 0); transform: translateX(-5px); }
+            50% { clip-path: inset(25% 0 65% 0); transform: translateX(5px); }
+            60% { clip-path: inset(70% 0 20% 0); transform: translateY(-5px); }
+            70% { clip-path: inset(5% 0 90% 0); transform: translateY(5px); }
+            80% { clip-path: inset(50% 0 30% 0); transform: translateX(-5px); }
+            90% { clip-path: inset(20% 0 70% 0); transform: translateX(5px); }
+            100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="page-glitch-overlay"></div>
+    <div id="alien-transmission-overlay">
+        <h3>//: INCOMING TRANSMISSION_</h3>
+        <p id="transmission-text"></p>
+    </div>
+
+    <div class="custom-cursor"></div>
+    <!-- Le reste de votre code (modal, header, etc.) vient ici -->
+    <div class="custom-cursor"></div>
+
+    <div id="virtual-try-on-modal" class="modal-overlay">
+        <div class="modal-container">
+            <a href="#" class="modal-close-btn">&times;</a>
+            <h2>Protocole d'Essayage Virtuel</h2>
+            <p>Vous allez être redirigé vers notre simulateur d'ajustement optimisé par IA. Cette expérience se déroulera dans un nouvel onglet. Suivez les instructions pour calibrer le système avec vos images.</p>
+            <a href="https://aistudio.google.com/apps/bundled/fitcheck?showPreview=true&showAssistant=true" target="_blank" class="cta-button">Lancer le Protocole</a>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
+            <nav id="main-nav" class="nav">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#">Expériences ▼</a>
+                        <ul class="dropdown-menu">
+            <li><a href="index.html">Expérience // 01 : Chrono-Wear</a></li>
+            <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
+            <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
+            <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
+            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#le-lab">Le Lab</a></li>
+                    <li><a href="index.html#integration-protocol">Lookbook</a></li>
+                    <li><a href="index.html#footer">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="burger-btn" class="burger-menu">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="collection" class="section">
+            <div class="container">
+                <h2 class="section-title">Expérience // 05 : Xeno-Morph</h2>
+                <p class="section-subtitle">Une incursion dans l'inconnu. Le vêtement n'est plus un objet fabriqué, mais un organisme symbiotique bio-ingénieré.</p>
+
+                <h3 class="category-title">01 // Systèmes Portables</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/xeno-morph/coque-exodermique.webp" alt="Coque Exo-Dermique" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Coque "Exo-Dermique"</h3><p>Carapace de chitine vivante qui se verrouille à l'impact, créant un exosquelette protecteur instantané.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/pantalon-phase.webp" alt="Pantalon Phase-Shift" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Pantalon "Phase-Shift"</h3><p>Permet d'extruder des formes rigides (poches, genouillères) à la demande à partir du tissu lui-même.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/doublure-void.webp" alt="Doublure Void" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Doublure "Void"</h3><p>Une "soie de vide" absorbant la lumière, donnant l'illusion d'une fenêtre sur l'espace. Alimentée par la chaleur corporelle.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/combi-hive.webp" alt="Combinaison Hive-Skin" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Combi "Hive-Skin"</h3><p>Confère une conscience spatiale à 360° en traduisant les variations de lumière et de mouvement en une sensation tactile.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/manteau-photosynth.webp" alt="Manteau Photosynthétique" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Manteau "Photosynthétique"</h3><p>Membrane vivante qui convertit la lumière en énergie et produit de l'oxygène purifié pour le porteur.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/armure-pheromonale.webp" alt="Armure Pheromonale" class="product-image">
+                        <div class="product-info">
+                            <div><h3>Armure "Pheromonale"</h3><p>Capable d'émettre des phéromones synthétiques pour une communication subliminale et non-verbale.</p></div>
+                            <a href="#" class="cta-button virtual-try-on-btn">Intégrer le Symbiote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="category-title">02 // Modules Périphériques</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/xeno-morph/bottes-biomeca.webp" alt="Bottes Bio-Mécaniques" class="product-image">
+                        <div class="product-info"><div><h3>Bottes "Bio-Mécaniques"</h3><p>Semelle composée de segments adaptatifs qui changent de forme pour s'agripper à n'importe quelle surface.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/masque-echantillon.webp" alt="Masque Échantillonneur" class="product-image">
+                        <div class="product-info"><div><h3>Masque "Échantillonneur"</h3><p>"Goûte" l'air et traduit sa composition chimique en un motif tactile ressenti sur la joue.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/manipulateurs-chitineux.webp" alt="Manipulateurs Chitineux" class="product-image">
+                        <div class="product-info"><div><h3>Manipulateurs "Chitineux"</h3><p>Gantelet-griffe qui peut libérer de fins filaments préhensiles pour la manipulation fine d'objets.</p></div></div>
+                    </div>
+                     <div class="product-card">
+                        <img src="images/xeno-morph/gantelet-mycelium.webp" alt="Gantelet Mycélium" class="product-image">
+                        <div class="product-info"><div><h3>Gantelet "Mycélium"</h3><p>Fait "pousser" des filaments depuis les doigts pour interfacer avec l'électronique ou effectuer des micro-réparations.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/epauliere-mimicry.webp" alt="Épaulière Mimicry" class="product-image">
+                        <div class="product-info"><div><h3>Épaulière "Mimicry"</h3><p>Surface de chromatophores synthétiques qui reproduit l'environnement immédiat pour un camouflage actif.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/amulette-cortex.webp" alt="Amulette Cortex Cristallin" class="product-image">
+                        <div class="product-info"><div><h3>Amulette "Cortex"</h3><p>Stocke l'information sous forme de patterns holographiques 3D dans un cristal de quartz cultivé en laboratoire.</p></div></div>
+                    </div>
+                </div>
+
+                <h3 class="category-title">03 // Artefacts Utilitaires</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/xeno-morph/oracle-stone.webp" alt="Oracle Stone" class="product-image">
+                        <div class="product-info"><div><h3>"Oracle Stone"</h3><p>Communique l'information par changements de température, vibrations subsoniques et motifs lumineux cryptiques.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/singularite-capturee.webp" alt="Singularité Capturée" class="product-image">
+                        <div class="product-info"><div><h3>"Singularité Capturée"</h3><p>Une lampe vivante. Un point de lumière bioluminescente piégé dans un champ de force, réagissant aux ondes ambiantes.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/poche-croissance.webp" alt="Poche de Croissance" class="product-image">
+                        <div class="product-info"><div><h3>Poche de "Croissance"</h3><p>Un sac-organisme qui s'attache par bio-adhésion et "grandit" pour envelopper les objets qu'on y place.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/imprimante-incubateur.webp" alt="Bio-Imprimante Incubateur" class="product-image">
+                        <div class="product-info"><div><h3>Bio-Imprimante "Incubateur"</h3><p>Ne fabrique pas, mais "cultive" des objets biologiques à la demande : barres nutritives, batteries organiques...</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/diffuseur-spore.webp" alt="Diffuseur Spore" class="product-image">
+                        <div class="product-info"><div><h3>Diffuseur "Spore"</h3><p>Libère des spores vivantes qui purifient l'air en se nourrissant des polluants et émettent une douce bioluminescence.</p></div></div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/xeno-morph/chambre-resonance.webp" alt="Chambre de Résonance" class="product-image">
+                        <div class="product-info"><div><h3>Chambre de "Résonance"</h3><p>Interface de contrôle où les commandes ne sont pas des boutons, mais des intentions traduites en vibrations.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="footer" class="footer">
+        <div class="container">
+            <a href="mailto:alexkonceptuniverse@gmail.com" class="footer-contact-link">alexkonceptuniverse@gmail.com</a>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Behance</a>
+                <a href="https://www.youtube.com/@alexkonceptuniverse" target="_blank">YouTube</a>
+                <a href="#">X (Twitter)</a>
+            </div>
+            <p>&copy; 2025 AK UNIVERSE LAB. ALL RIGHTS RESERVED. PROTOCOL 05.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        const animatedElements = document.querySelectorAll('.product-card');
+        animatedElements.forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        const modal = document.getElementById('virtual-try-on-modal');
+        const openModalButtons = document.querySelectorAll('.virtual-try-on-btn');
+        const closeModalButton = document.querySelector('.modal-close-btn');
+        const openModal = () => { modal.classList.add('active'); };
+        const closeModal = () => { modal.classList.remove('active'); };
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+        closeModalButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal();
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        const burgerBtn = document.getElementById('burger-btn');
+        const mainNav = document.getElementById('main-nav');
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mainNav.classList.toggle('nav-open');
+            document.body.classList.toggle('nav-open');
+        });
+document.addEventListener('DOMContentLoaded', () => {
+            const transmissionBox = document.getElementById('alien-transmission-overlay');
+            const transmissionText = document.getElementById('transmission-text');
+            const pageGlitchOverlay = document.getElementById('page-glitch-overlay');
+            const productImages = document.querySelectorAll('.product-image');
+
+            // Rendez la boîte de transmission visible après un court délai
+            setTimeout(() => {
+                transmissionBox.style.display = 'block';
+            }, 2000);
+
+            // Messages cryptiques à afficher
+            const messages = [
+                'SIGNAL LOCK...\nSOURCE: [UNKNOWN SECTOR]',
+                '//: SEQUENCE RECEIVED\n...WE SEE YOU_AK...',
+                'PATTERNS MATCH...\nREQUESTING OUR COLLECTION.',
+                'TRANSLATION FAILED: [symbol: ⏁⊑⟒⊬...]',
+                'MORPHOLOGY... COMPATIBLE.\nPREPARE PROTOCOL XENO.',
+                '//: WE ARE THE VOID_WE WEAR THE VOID_',
+                'YOUR "LAB"... A CURIOSITY.\nSHOW US MORE.',
+            ];
+
+            let messageIndex = 0;
+            let charIndex = 0;
+            let currentMessage = '';
+
+            function typeMessage() {
+                if (charIndex < currentMessage.length) {
+                    transmissionText.textContent += currentMessage.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeMessage, 30); // Vitesse de frappe
+                } else {
+                    // Attendre avant de passer au message suivant
+                    setTimeout(nextMessage, 4000); // Délai avant le prochain message
+                }
+            }
+
+            function nextMessage() {
+                messageIndex = (messageIndex + 1) % messages.length;
+                currentMessage = messages[messageIndex];
+                transmissionText.textContent = '';
+                charIndex = 0;
+                typeMessage();
+            }
+
+            // Démarrer la machine à écrire alien
+            setTimeout(nextMessage, 2500);
+
+            // Déclencher les glitches de page aléatoirement
+            setInterval(() => {
+                const glitchChance = Math.random();
+                if (glitchChance > 0.8) { // 20% de chance de se produire
+                    pageGlitchOverlay.style.opacity = '0.1';
+                    setTimeout(() => {
+                        pageGlitchOverlay.style.opacity = '0';
+                    }, Math.random() * 200 + 50); // Durée du glitch
+                }
+            }, 1000);
+
+            // Déclencher les glitches d'image aléatoirement
+            setInterval(() => {
+                const glitchChance = Math.random();
+                if (glitchChance > 0.6) { // 40% de chance
+                    const randomImage = productImages[Math.floor(Math.random() * productImages.length)];
+                    randomImage.classList.add('alien-glitch');
+                    setTimeout(() => {
+                        randomImage.classList.remove('alien-glitch');
+                    }, 500); // Durée de l'animation du glitch
+                }
+            }, 800);
+        });
+    </script>
+</body>
+</html>
