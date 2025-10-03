@@ -94,6 +94,7 @@
             .custom-cursor { display: none; }
             body { cursor: auto; }
             main { padding-top: 80px; }
+            
             .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
             .nav.nav-open { transform: translateX(0); }
             .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
@@ -109,9 +110,34 @@
             .burger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
 
             .nav .dropdown:hover .dropdown-menu { display: none; }
-            .nav .dropdown-menu { position: static; display: flex; flex-direction: column; background-color: transparent; border: none; width: 100%; padding: 0; margin-top: -20px; margin-bottom: 20px; }
-            .nav .dropdown-menu li a { font-size: 0.8em; text-align: center; }
-            .nav .dropdown > a { display: none; }
+            .nav .dropdown { width: 100%; text-align: center; }
+            .nav .dropdown > a { display: inline-block; } 
+            
+            .nav .dropdown-menu {
+                position: static;
+                display: block; 
+                background-color: transparent;
+                border: none;
+                width: 100%;
+                padding: 0;
+                margin-top: 20px; 
+                max-height: 0; 
+                overflow: hidden; 
+                transition: max-height 0.5s ease-in-out; 
+            }
+
+            .nav .dropdown.submenu-open .dropdown-menu {
+                max-height: 500px;
+            }
+
+            .nav .dropdown-menu li {
+                margin-bottom: 20px;
+            }
+
+            .nav .dropdown-menu li a { 
+                font-size: 0.8em; 
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -132,21 +158,21 @@
         <div class="container">
             <a href="index.html" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
             <nav id="main-nav" class="nav">
-<ul>
-    <li class="dropdown">
-        <a href="#">Expériences ▼</a>
-        <ul class="dropdown-menu">
-            <li><a href="index.html">Expérience // 01 : Chrono-Wear</a></li>
-            <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
-            <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
-            <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
-            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>                
-        </ul>
-    </li>
-    <li><a href="index.html#le-lab">Le Lab</a></li>
-    <li><a href="index.html#integration-protocol">Lookbook</a></li>
-    <li><a href="index.html#footer">Contact</a></li>
-</ul>
+                <ul>
+                    <li class="dropdown">
+                        <a href="#">Expériences ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>
+                            <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
+                            <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
+                            <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
+                            <li><a href="index.html">Expérience // 01 : Chrono-Wear</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#le-lab">Le Lab</a></li>
+                    <li><a href="index.html#integration-protocol">Lookbook</a></li>
+                    <li><a href="index.html#footer">Contact</a></li>
+                </ul>
             </nav>
             <div id="burger-btn" class="burger-menu">
                 <span></span><span></span><span></span><span></span>
@@ -279,53 +305,91 @@
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-        const animatedElements = document.querySelectorAll('.product-card');
-        animatedElements.forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-        const cursor = document.querySelector('.custom-cursor');
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        const modal = document.getElementById('virtual-try-on-modal');
-        const openModalButtons = document.querySelectorAll('.virtual-try-on-btn');
-        const closeModalButton = document.querySelector('.modal-close-btn');
-        const openModal = () => { modal.classList.add('active'); };
-        const closeModal = () => { modal.classList.remove('active'); };
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal();
-            });
-        });
-        closeModalButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal();
-        });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+            if (cursor) {
+                window.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
             }
-        });
 
-        const burgerBtn = document.getElementById('burger-btn');
-        const mainNav = document.getElementById('main-nav');
-        burgerBtn.addEventListener('click', () => {
-            burgerBtn.classList.toggle('open');
-            mainNav.classList.toggle('nav-open');
-            document.body.classList.toggle('nav-open');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            const animatedElements = document.querySelectorAll('.product-card, .about-content > div, .simulation-item');
+            animatedElements.forEach((el) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            const modal = document.getElementById('virtual-try-on-modal');
+            const openModalButtons = document.querySelectorAll('.virtual-try-on-btn');
+            const closeModalButton = document.querySelector('.modal-close-btn');
+            
+            const openModal = () => { if(modal) modal.classList.add('active'); };
+            const closeModal = () => { if(modal) modal.classList.remove('active'); };
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+            if(closeModalButton) {
+                closeModalButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeModal();
+                });
+            }
+            if(modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            const burgerBtn = document.getElementById('burger-btn');
+            const mainNav = document.getElementById('main-nav');
+            const dropdown = document.querySelector('.nav .dropdown');
+            const allNavLinks = document.querySelectorAll('#main-nav a');
+
+            burgerBtn.addEventListener('click', () => {
+                burgerBtn.classList.toggle('open');
+                mainNav.classList.toggle('nav-open');
+                document.body.classList.toggle('nav-open');
+            });
+
+            if (dropdown) {
+                const dropdownLink = dropdown.querySelector('a');
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('submenu-open');
+                    }
+                });
+            }
+            
+            allNavLinks.forEach(link => {
+                if (link.parentElement.classList.contains('dropdown')) return;
+
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('nav-open')) {
+                        burgerBtn.classList.remove('open');
+                        mainNav.classList.remove('nav-open');
+                        document.body.classList.remove('nav-open');
+                        if (dropdown) dropdown.classList.remove('submenu-open');
+                    }
+                });
+            });
         });
     </script>
 </body>
