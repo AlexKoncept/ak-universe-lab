@@ -481,58 +481,6 @@
                     }
                 });
             });
-
-            const transmissionBox = document.getElementById('alien-transmission-overlay');
-            if (transmissionBox) {
-                const transmissionText = document.getElementById('transmission-text');
-                const pageGlitchOverlay = document.getElementById('page-glitch-overlay');
-                const productImages = document.querySelectorAll('.product-image');
-
-                setTimeout(() => { transmissionBox.style.display = 'block'; }, 2000);
-
-                const messages = [
-                    'SIGNAL LOCK...\nSOURCE: [UNKNOWN SECTOR]',
-                    '//: SEQUENCE RECEIVED\n...WE SEE YOU_AK...',
-                    'PATTERNS MATCH...\nREQUESTING OUR COLLECTION.',
-                    'TRANSLATION FAILED: [symbol: ⏁⊑⟒⊬...]',
-                    'MORPHOLOGY... COMPATIBLE.\nPREPARE PROTOCOL XENO.',
-                    '//: WE ARE THE VOID_WE WEAR THE VOID_',
-                    'YOUR "LAB"... A CURIOSITY.\nSHOW US MORE.',
-                ];
-                let messageIndex = 0, charIndex = 0, currentMessage = '';
-                function typeMessage() {
-                    if (charIndex < currentMessage.length) {
-                        transmissionText.textContent += currentMessage.charAt(charIndex);
-                        charIndex++;
-                        setTimeout(typeMessage, 30);
-                    } else {
-                        setTimeout(nextMessage, 4000);
-                    }
-                }
-                function nextMessage() {
-                    messageIndex = (messageIndex + 1) % messages.length;
-                    currentMessage = messages[messageIndex];
-                    transmissionText.textContent = '';
-                    charIndex = 0;
-                    typeMessage();
-                }
-                setTimeout(nextMessage, 2500);
-
-                setInterval(() => {
-                    if (Math.random() > 0.8) {
-                        pageGlitchOverlay.style.opacity = '0.1';
-                        setTimeout(() => { pageGlitchOverlay.style.opacity = '0'; }, Math.random() * 200 + 50);
-                    }
-                }, 1000);
-                
-                setInterval(() => {
-                    if (Math.random() > 0.6) {
-                        const randomImage = productImages[Math.floor(Math.random() * productImages.length)];
-                        randomImage.classList.add('alien-glitch');
-                        setTimeout(() => { randomImage.classList.remove('alien-glitch'); }, 500);
-                    }
-                }, 800);
-            }
         });
     </script>
 </body>
