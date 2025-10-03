@@ -125,9 +125,10 @@
         .nav .dropdown:hover .dropdown-menu { display: block; }
         .nav .dropdown-menu li a { display: block; padding: 10px 20px; white-space: nowrap; }
         
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
             .custom-cursor { display: none; }
             body { cursor: auto; }
+            main { padding-top: 80px; }
             .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
             .nav.nav-open { transform: translateX(0); }
             .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
@@ -141,12 +142,35 @@
             .burger-menu.open span:nth-child(1), .burger-menu.open span:nth-child(4) { top: 10px; width: 0%; left: 50%; }
             .burger-menu.open span:nth-child(2) { transform: rotate(45deg); }
             .burger-menu.open span:nth-child(3) { transform: rotate(-45deg); }
+
+            .nav .dropdown:hover .dropdown-menu { display: none; }
+            .nav .dropdown { width: 100%; text-align: center; }
+            .nav .dropdown > a { display: inline-block; } 
             
-            .hero h1 { font-size: 2.5em; }
-            .hero .slogan { font-size: 1em; }
-            .about-content { flex-direction: column; }
-            .simulation-grid { grid-template-columns: 1fr; }
-            .section-subtitle {font-size: 14px;line-height: 1.6;margin-bottom: 50px; }
+            .nav .dropdown-menu {
+                position: static;
+                display: block; 
+                background-color: transparent;
+                border: none;
+                width: 100%;
+                padding: 0;
+                margin-top: 20px; 
+                max-height: 0; 
+                overflow: hidden; 
+                transition: max-height 0.5s ease-in-out; 
+            }
+
+            .nav .dropdown.submenu-open .dropdown-menu {
+                max-height: 500px; 
+
+            .nav .dropdown-menu li {
+                margin-bottom: 20px;
+            }
+
+            .nav .dropdown-menu li a { 
+                font-size: 0.8em; 
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -411,6 +435,15 @@
             burgerBtn.classList.toggle('open');
             mainNav.classList.toggle('nav-open');
             document.body.classList.toggle('nav-open');
+        });
+        const dropdownLink = document.querySelector('.nav .dropdown > a');
+        dropdownLink.addEventListener('click', (event) => {
+            
+            if (window.innerWidth <= 768) {
+                event.preventDefault(); 
+                const dropdown = dropdownLink.parentElement;
+                dropdown.classList.toggle('submenu-open');
+            }
         });
     </script>
 </body>
