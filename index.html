@@ -125,10 +125,15 @@
         .nav .dropdown:hover .dropdown-menu { display: block; }
         .nav .dropdown-menu li a { display: block; padding: 10px 20px; white-space: nowrap; }
         
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
             .custom-cursor { display: none; }
             body { cursor: auto; }
-            main { padding-top: 80px; }
+            .hero h1 { font-size: 2.5em; }
+            .hero .slogan { font-size: 1em; }
+            .about-content { flex-direction: column; }
+            .simulation-grid { grid-template-columns: 1fr; }
+            .section-subtitle { font-size: 14px; line-height: 1.6; margin-bottom: 50px; }
+            
             .nav { position: fixed; top: 0; right: 0; width: 70%; height: 100vh; background-color: rgba(10,10,10,0.95); backdrop-filter: blur(10px); transform: translateX(100%); transition: transform 0.4s ease-in-out; z-index: 100; }
             .nav.nav-open { transform: translateX(0); }
             .nav ul { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
@@ -161,7 +166,8 @@
             }
 
             .nav .dropdown.submenu-open .dropdown-menu {
-                max-height: 500px; 
+                max-height: 500px;
+            }
 
             .nav .dropdown-menu li {
                 margin-bottom: 20px;
@@ -192,21 +198,20 @@
             <a href="#" class="logo">AK<span>.</span>UNIVERSE<span>.</span>LAB</a>
             <nav id="main-nav" class="nav">
                 <ul>
-    <li class="dropdown">
-        <a href="#">Expériences ▼</a>
-        <ul class="dropdown-menu">
-            <li><a href="#collection">Expérience // 01 : Chrono-Wear</a></li>
-            <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
-            <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
-            <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
-            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>
-           
-        </ul>
-    </li>
-    <li><a href="#le-lab">Le Lab</a></li>
-    <li><a href="#integration-protocol">Lookbook</a></li>
-    <li><a href="#footer">Contact</a></li>
-</ul>
+                    <li class="dropdown">
+                        <a href="#">Expériences ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="collection-05.html">Expérience // 05 : Xeno-Morph</a></li>
+                            <li><a href="collection-04.html">Expérience // 04 : Bio-Metric</a></li>
+                            <li><a href="collection-03.html">Expérience // 03 : Acoustic-Wear</a></li>
+                            <li><a href="collection-02.html">Expérience // 02 : Spectra-Shift</a></li>
+                            <li><a href="#collection">Expérience // 01 : Chrono-Wear</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#le-lab">Le Lab</a></li>
+                    <li><a href="#integration-protocol">Lookbook</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
             </nav>
             <div id="burger-btn" class="burger-menu">
                 <span></span><span></span><span></span><span></span>
@@ -225,7 +230,7 @@
         <section id="collection" class="section">
             <div class="container">
                 <h2 class="section-title">Expérience // 01 : Chrono-Wear</h2>
-<p class="section-subtitle">Le protocole fondateur. Une exploration de la structure et du temps, où chaque pièce est conçue comme un outil fonctionnel pour l'environnement urbain.</p>
+                <p class="section-subtitle">Le protocole fondateur. Une exploration de la structure et du temps, où chaque pièce est conçue comme un outil fonctionnel pour l'environnement urbain.</p>
                 <h3 class="category-title">01 // Systèmes Portables</h3>
                 <div class="product-grid">
                     <div class="product-card">
@@ -383,66 +388,150 @@
     </footer>
 
     <script>
-        const hero = document.querySelector('.hero');
-        window.addEventListener('scroll', () => {
-            const scrollValue = window.scrollY;
-            hero.style.backgroundPosition = `center calc(50% + ${scrollValue * 0.5}px)`;
-        });
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-        const animatedElements = document.querySelectorAll('.product-card, .about-content > div, .simulation-item');
-        animatedElements.forEach((el) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-        const cursor = document.querySelector('.custom-cursor');
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        const modal = document.getElementById('virtual-try-on-modal');
-        const openModalButtons = document.querySelectorAll('.virtual-try-on-btn');
-        const closeModalButton = document.querySelector('.modal-close-btn');
-        const openModal = () => { modal.classList.add('active'); };
-        const closeModal = () => { modal.classList.remove('active'); };
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal();
-            });
-        });
-        closeModalButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeModal();
-        });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+            if (cursor) {
+                window.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
             }
-        });
 
-        const burgerBtn = document.getElementById('burger-btn');
-        const mainNav = document.getElementById('main-nav');
-        burgerBtn.addEventListener('click', () => {
-            burgerBtn.classList.toggle('open');
-            mainNav.classList.toggle('nav-open');
-            document.body.classList.toggle('nav-open');
-        });
-        const dropdownLink = document.querySelector('.nav .dropdown > a');
-        dropdownLink.addEventListener('click', (event) => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                window.addEventListener('scroll', () => {
+                    const scrollValue = window.scrollY;
+                    hero.style.backgroundPosition = `center calc(50% + ${scrollValue * 0.5}px)`;
+                });
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            const animatedElements = document.querySelectorAll('.product-card, .about-content > div, .simulation-item');
+            animatedElements.forEach((el) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            const modal = document.getElementById('virtual-try-on-modal');
+            const openModalButtons = document.querySelectorAll('.virtual-try-on-btn');
+            const closeModalButton = document.querySelector('.modal-close-btn');
             
-            if (window.innerWidth <= 768) {
-                event.preventDefault(); 
-                const dropdown = dropdownLink.parentElement;
-                dropdown.classList.toggle('submenu-open');
+            const openModal = () => { if(modal) modal.classList.add('active'); };
+            const closeModal = () => { if(modal) modal.classList.remove('active'); };
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+            if(closeModalButton) {
+                closeModalButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeModal();
+                });
+            }
+            if(modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            const burgerBtn = document.getElementById('burger-btn');
+            const mainNav = document.getElementById('main-nav');
+            const dropdown = document.querySelector('.nav .dropdown');
+            const allNavLinks = document.querySelectorAll('#main-nav a');
+
+            burgerBtn.addEventListener('click', () => {
+                burgerBtn.classList.toggle('open');
+                mainNav.classList.toggle('nav-open');
+                document.body.classList.toggle('nav-open');
+            });
+
+            if (dropdown) {
+                const dropdownLink = dropdown.querySelector('a');
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('submenu-open');
+                    }
+                });
+            }
+            
+            allNavLinks.forEach(link => {
+                if (link.parentElement.classList.contains('dropdown')) return;
+
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('nav-open')) {
+                        burgerBtn.classList.remove('open');
+                        mainNav.classList.remove('nav-open');
+                        document.body.classList.remove('nav-open');
+                        if (dropdown) dropdown.classList.remove('submenu-open');
+                    }
+                });
+            });
+
+            const transmissionBox = document.getElementById('alien-transmission-overlay');
+            if (transmissionBox) {
+                const transmissionText = document.getElementById('transmission-text');
+                const pageGlitchOverlay = document.getElementById('page-glitch-overlay');
+                const productImages = document.querySelectorAll('.product-image');
+
+                setTimeout(() => { transmissionBox.style.display = 'block'; }, 2000);
+
+                const messages = [
+                    'SIGNAL LOCK...\nSOURCE: [UNKNOWN SECTOR]',
+                    '//: SEQUENCE RECEIVED\n...WE SEE YOU_AK...',
+                    'PATTERNS MATCH...\nREQUESTING OUR COLLECTION.',
+                    'TRANSLATION FAILED: [symbol: ⏁⊑⟒⊬...]',
+                    'MORPHOLOGY... COMPATIBLE.\nPREPARE PROTOCOL XENO.',
+                    '//: WE ARE THE VOID_WE WEAR THE VOID_',
+                    'YOUR "LAB"... A CURIOSITY.\nSHOW US MORE.',
+                ];
+                let messageIndex = 0, charIndex = 0, currentMessage = '';
+                function typeMessage() {
+                    if (charIndex < currentMessage.length) {
+                        transmissionText.textContent += currentMessage.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeMessage, 30);
+                    } else {
+                        setTimeout(nextMessage, 4000);
+                    }
+                }
+                function nextMessage() {
+                    messageIndex = (messageIndex + 1) % messages.length;
+                    currentMessage = messages[messageIndex];
+                    transmissionText.textContent = '';
+                    charIndex = 0;
+                    typeMessage();
+                }
+                setTimeout(nextMessage, 2500);
+
+                setInterval(() => {
+                    if (Math.random() > 0.8) {
+                        pageGlitchOverlay.style.opacity = '0.1';
+                        setTimeout(() => { pageGlitchOverlay.style.opacity = '0'; }, Math.random() * 200 + 50);
+                    }
+                }, 1000);
+                
+                setInterval(() => {
+                    if (Math.random() > 0.6) {
+                        const randomImage = productImages[Math.floor(Math.random() * productImages.length)];
+                        randomImage.classList.add('alien-glitch');
+                        setTimeout(() => { randomImage.classList.remove('alien-glitch'); }, 500);
+                    }
+                }, 800);
             }
         });
     </script>
